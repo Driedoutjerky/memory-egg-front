@@ -1,0 +1,254 @@
+
+/*Accountable for global css design across pages.*/
+
+:root {
+  /* Colors */
+  --color-bg: #efe8dc;
+  --color-bg-soft: #f7f3eb;
+
+  --color-panel: #c2a383;
+  --color-panel-light: #d8c2a8;
+  --color-paper: #f8f4ec;
+
+  --color-text: #2f241f;
+  --color-text-soft: #6f5a4d;
+  --color-text-muted: #9a8678;
+
+  --color-border: #d6c9bb;
+
+  --color-button: #2b1d17;
+  --color-button-hover: #3a2921;
+  --color-button-text: #fffaf2;
+
+  --color-danger: #8b3a2f;
+  --color-success: #4f7d4f;
+
+  /* Typography */
+  --font-serif: Georgia, "Times New Roman", serif;
+  --font-sans: Inter, Arial, Helvetica, sans-serif;
+
+  /* Spacing */
+  --space-xs: 0.4rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+
+  /* Shadow */
+  --shadow-soft: 0 14px 35px rgba(51, 36, 28, 0.12);
+  --shadow-panel: 0 18px 45px rgba(51, 36, 28, 0.16);
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --header-height: 72px;
+}
+
+/* 
+   Resets and bases with css rules, making the browser's default styling more consistent.
+*/
+
+* { /* Easier width calculation. */
+  box-sizing: border-box;
+}
+
+html { /*fill the screen with root page area*/
+  min-height: 100%;
+}
+
+body { /* Default page background, text color, font + removes browser margin. */
+  min-height: 100%;
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+}
+
+button, 
+input,
+textarea,
+select { /*Form elements use own browser font. Making input/buttons use the consistent/same font in the web.*/
+  font: inherit;
+}
+
+button { /*Makes the mouse cursor become DA HAND when hovering over buttons.*/
+  cursor: pointer;
+}
+
+a { /* Remove default link style. */
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Shared Page Layout */
+
+.app-page {  /* Create full-page wrapper. */
+  min-height: 100vh;
+  background: var(--color-bg);
+}
+
+.page-center { /* Center contents both vertically/horizontally. */
+  min-height: 100vh;
+  display: flex; /*Elements to flex container*/
+  align-items: center;
+  justify-content: center; /*Center children vertically in the cross axis*/
+  padding: var(--space-xl);
+}
+
+.page-container { /* Normal content container. Use the smaller value between almost-full screen width and max width. */
+  width: min(100% - 2rem, var(--page-max-width));
+  margin: 0 auto; /*Centers the container horizontally*/
+  padding: var(--space-xl) 0; /*Add vertical spacing*/
+}
+
+/* Shared Cards / Panels */
+
+.panel { /* General card/panel style */
+  background: var(--color-paper);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+}
+
+.notebook-panel { /* Brown notebook-like panel, for egg dashboard etc. */
+  background: var(--color-panel);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-panel);
+  color: var(--color-button-text);
+}
+
+.paper-panel { /* creamish inner area*/
+  background: var(--color-paper);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+}
+
+/* Typography Helpers */
+
+.page-title { /* Reusable page title style */
+  margin: 0; /* Remove default heading margin */
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  line-height: 1.2; /* Controls vertical spacing between lines */
+  color: var(--color-text);
+}
+
+.section-title { /* Reusable smaller titles for sections */
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  color: var(--color-text);
+}
+
+.muted-text { /* less important text */
+  color: var(--color-text-muted);
+}
+
+.small-text { /* smaller text */
+  font-size: 0.85rem;
+}
+
+/* Buttons */
+
+.btn {
+  display: inline-flex; /*Allows the button content to be centered*/
+  align-items: center;
+  justify-content: center; /*Center text inside the button (with align-items as well)*/
+  min-height: 44px; /* Keeps button large enough to click easily */
+  padding: 0.7rem 1.4rem; /* Control inner spacing */
+  border: 1px solid transparent; /* Adds border but invisible. */
+  border-radius: var(--radius-sm); /* round round button corners */
+  background: var(--color-button);
+  color: var(--color-button-text);
+  font-weight: 600; /* bold button text */
+  line-height: 1; 
+  transition: /* Elegant hover effects */
+    background 0.18s ease,
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.btn:hover { /* When mouse hovers, the button becomes slightly lighter/darker and moves upward a little. */
+  background: var(--color-button-hover);
+  transform: translateY(-1px);
+}
+
+.btn:active { /* When clicked! */
+  transform: translateY(0);
+}
+
+.btn-secondary { /* Secondary button style */
+  background: transparent;
+  color: var(--color-text-soft);
+  border-color: var(--color-border);
+}
+
+.btn-secondary:hover {
+  background: var(--color-bg-soft);
+}
+
+
+/* Utility Classes */
+
+.stack-sm { /* Create a vertical stack with small gaps */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.stack-md { /* Create a vertical stack with medium gaps */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.stack-lg { /* Create a vertical stack with large gaps */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.row { /* Create horizontal row */
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.row-between { /* Create row with left and right items are apart */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+/* Responsive Base */
+
+@media (max-width: 768px) {
+  :root {
+    --header-height: 64px;
+  }
+
+  .app-header {
+    padding: 0 var(--space-md);
+  }
+
+  .header-nav {
+    gap: var(--space-sm);
+    font-size: 0.8rem;
+  }
+
+  .page-center {
+    padding: var(--space-md);
+  }
+
+  .page-title {
+    font-size: 1.65rem;
+  }
+}
