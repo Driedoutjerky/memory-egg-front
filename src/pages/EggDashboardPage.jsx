@@ -1,5 +1,10 @@
 import "./EggDashboardPage.css";
 
+import eggImage from "../assets/egg.PNG";
+import nestImage from "../assets/nest.PNG";
+import notebookImage from "../assets/notebook.PNG";
+import windowFrameImage from "../assets/windowframe.PNG";
+
 function EggDashboardPage() {
   return (
     <main className="app-page egg-dashboard-page">
@@ -19,8 +24,16 @@ function EggDashboardPage() {
         <section className="window-area" aria-label="Egg window scene placeholder">
           <div className="window-frame">
             <div className="window-view">
-              <div className="scene-placeholder scene-egg">Egg image</div>
-              <div className="scene-placeholder scene-nest">Nest image</div>
+              <div className="scene-group">
+                <div className="scene-art scene-nest">
+                  <img src={nestImage} alt="Nest" />
+                </div>
+
+                <div className="scene-art scene-egg">
+                  <img src={eggImage} alt="Egg" />
+                </div>
+              </div>
+
               <div className="window-sill" />
             </div>
           </div>
