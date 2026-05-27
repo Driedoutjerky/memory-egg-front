@@ -472,7 +472,8 @@
   }
 
   .shop-item-card {
-    min-height: 210px;
+    min-height: 260px;
+    padding: 1rem;
     border-radius: 14px;
   }
 
@@ -480,8 +481,32 @@
     height: 125px;
   }
 
+  .shop-item-info {
+    min-height: auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 0.8rem;
+    margin-top: 1rem;
+  }
+
+  .shop-item-info strong {
+    display: block;
+    font-size: 0.9rem;
+  }
+
   .shop-item-description {
-    max-width: 180px;
+    max-width: none;
+    margin: 0.3rem 0 0;
+    font-size: 0.72rem;
+    line-height: 1.35;
+  }
+
+  .owned-label,
+  .price-label {
+    align-self: end;
+    justify-self: end;
+    white-space: nowrap;
   }
 
   .shop-footer {
