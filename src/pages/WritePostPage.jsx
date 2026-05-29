@@ -1,8 +1,10 @@
+import { useState } from "react";
 import "./WritePostPage.css";
 
 function WritePostPage() {
+  const [visibility, setVisibility] = useState("private");
   return (
-    <main className="app-page write-post-page">
+    <main className={`app-page write-post-page visibility-${visibility}`}>
       <header className="write-header">
         <div className="write-brand">nacimiento</div>
 
@@ -60,17 +62,35 @@ function WritePostPage() {
                 <legend className="sr-only">Post visibility</legend>
 
                 <label>
-                  <input type="radio" name="visibility" value="private" defaultChecked />
+                  <input
+                    type="radio"
+                    name="visibility"
+                    value="private"
+                    checked={visibility === "private"}
+                    onChange={() => setVisibility("private")}
+                  />
                   <span>Private</span>
                 </label>
 
                 <label>
-                  <input type="radio" name="visibility" value="public" />
+                  <input
+                    type="radio"
+                    name="visibility"
+                    value="public"
+                    checked={visibility === "public"}
+                    onChange={() => setVisibility("public")}
+                  />
                   <span>Public</span>
                 </label>
 
                 <label>
-                  <input type="radio" name="visibility" value="anonymous" />
+                  <input
+                    type="radio"
+                    name="visibility"
+                    value="anonymous"
+                    checked={visibility === "anonymous"}
+                    onChange={() => setVisibility("anonymous")}
+                  />
                   <span>Anonymous</span>
                 </label>
               </fieldset>
