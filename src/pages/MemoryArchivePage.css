@@ -418,6 +418,7 @@
   background: linear-gradient(to right, #e4d8cb 60%, transparent);
 }
 
+/* Split text issue
 .preview-meta {
   display: flex;
   justify-content: space-between;
@@ -427,6 +428,23 @@
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+*/
+
+.preview-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  color: #82756b;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.preview-meta span {
+  white-space: nowrap;
 }
 
 .preview-actions {
