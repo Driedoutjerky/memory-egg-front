@@ -326,15 +326,17 @@
 }
 
 .visibility-toggle span {
-  min-width: 58px;
+  min-width: 72px;
   min-height: 24px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  padding: 0 0.65rem;
   border-radius: 999px;
   color: #5f5147;
   font-size: 0.68rem;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .visibility-toggle input:checked + span {
