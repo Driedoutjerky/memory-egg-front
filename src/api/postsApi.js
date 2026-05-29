@@ -1,7 +1,56 @@
-/* NOTE: THIS FILE WILL BE REPLACED WITH FETCH() CALLS.
-   LOGICS SHOULD BE IMPLEMENTED IN BACKEND. */
+const STORAGE_KEY = "memory_egg_posts";
 
-import { mockPosts } from "./mockData";
+const defaultPosts = [
+  {
+    post_id: 1,
+    user_id: 1,
+    title: "The First Crack",
+    content:
+      "This morning, I found a tiny crack on the surface of the egg. Is it a sign that my will is starting to take shape?",
+    image_url: null,
+    tag: "growth",
+    visibility: "public",
+    word_count: 24,
+    will_reward: 12,
+    created_at: "2026-05-29",
+    updated_at: "2026-05-29",
+  },
+  {
+    post_id: 2,
+    user_id: 1,
+    title: "Study Day",
+    content:
+      "I studied React today. Hooks are still confusing, but I am starting to understand how state controls the page.",
+    image_url: null,
+    tag: "study",
+    visibility: "private",
+    word_count: 19,
+    will_reward: 10,
+    created_at: "2026-05-29",
+    updated_at: "2026-05-29",
+  },
+];
+
+
+/* localStorage for testing WritePostPage and MemoryARchivePage interaction */
+
+function loadPostsFromStorage() {
+  const savedPosts = localStorage.getItem(STORAGE_KEY);
+
+  if (!savedPosts) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultPosts));
+    return defaultPosts;
+  }
+
+  return JSON.parse(savedPosts);
+}
+
+function savePostsToStorage(posts) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(posts));
+}
+
+
+
 
 function countWords(text) {
   const trimmed = text.trim();
@@ -13,20 +62,22 @@ function countWords(text) {
   return trimmed.split(/\s+/).length;
 }
 
-/*(Will Reward per post) = wordCount / 10 */
 function calculateWillReward(wordCount) {
   return Math.max(1, Math.floor(wordCount / 10));
 }
 
 export async function getAllPosts() {
-  return mockPosts;
+  return loadPostsFromStorage();
 }
 
 export async function getPostById(postId) {
-  return mockPosts.find((post) => post.post_id === Number(postId));
+  const posts = loadPostsFromStorage();
+
+  return posts.find((post) => post.post_id === Number(postId));
 }
 
 export async function createPost(postData) {
+  const posts = loadPostsFromStorage();
   const wordCount = countWords(postData.content);
 
   const newPost = {
@@ -35,15 +86,17 @@ export async function createPost(postData) {
     title: postData.title,
     content: postData.content,
     image_url: postData.image_url || null,
-    tag: postData.tag || "reflection",
+    tag: postData.tag,
     visibility: postData.visibility,
     word_count: wordCount,
     will_reward: calculateWillReward(wordCount),
-    created_at: new Date().toISOString().slice(0, 10),
-    updated_at: new Date().toISOString().slice(0, 10),
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
   };
 
-  mockPosts.unshift(newPost);
+  const updatedPosts = [newPost, ...posts];
+
+  savePostsToStorage(updatedPosts);
 
   return newPost;
 }
