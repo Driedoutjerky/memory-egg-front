@@ -1,5 +1,19 @@
 import "./ProfilePage.css";
 
+function getTagClassName(tag) {
+  const normalizedTag = tag?.toLowerCase();
+
+  if (normalizedTag === "study") {
+    return "tag-study";
+  }
+
+  if (normalizedTag === "food") {
+    return "tag-food";
+  }
+
+  return "tag-general";
+}
+
 function ProfilePage() {
   return (
     <main className="app-page profile-page">
@@ -31,17 +45,17 @@ function ProfilePage() {
             <h1>Wanderer</h1>
             <p>Cultivating thoughts since October.</p>
 
-            <div className="profile-badges">
-              <article className="profile-badge">
+            <ul className="profile-badges" aria-label="Profile summary badges"> {/* Better for semantic */}
+              <li className="profile-badge">
                 <span>Streak</span>
                 <strong>↝ 14 days</strong>
-              </article>
+              </li>
 
-              <article className="profile-badge">
+              <li className="profile-badge">
                 <span>Will Balance</span>
                 <strong>∞ 350 will</strong>
-              </article>
-            </div>
+              </li>
+            </ul>
           </div>
         </section>
 
@@ -75,10 +89,13 @@ function ProfilePage() {
             <article className="profile-card profile-tags-card">
               <span className="profile-section-label">Most Used Tags</span>
 
-              <div className="profile-tags">
-                <span>#food</span>
-                <span>#study</span>
-              </div>
+              <ul className="profile-tags" aria-label="Most used tags">
+                {["food", "study", "reflection"].map((tag) => (
+                  <li key={tag} className={getTagClassName(tag)}>
+                    #{tag}
+                  </li>
+                ))}
+              </ul>
             </article>
           </section>
 

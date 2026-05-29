@@ -200,6 +200,10 @@
   display: flex;
   gap: 0.6rem;
   flex-wrap: wrap;
+
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .profile-badge {
@@ -313,20 +317,31 @@
   flex-wrap: wrap;
   gap: 0.55rem;
   margin-top: 1rem;
+
+  list-style: none;
+  padding: 0;
 }
 
-.profile-tags span {
+.profile-tags li {
   padding: 0.35rem 0.7rem;
   border-radius: 999px;
-  background: #f0dfc9;
-  color: #655142;
   font-size: 0.7rem;
   font-weight: 700;
 }
 
-.profile-tags span:first-child {
+.profile-tags .tag-general {
   background: #dcefd0;
-  color: #4b6b3c;
+  color: #3e6a34;
+}
+
+.profile-tags .tag-study {
+  background: #d9e5f7;
+  color: #334f7f;
+}
+
+.profile-tags .tag-food {
+  background: #f3dfc6;
+  color: #7d4f2b;
 }
 
 /* Egg resonance */
