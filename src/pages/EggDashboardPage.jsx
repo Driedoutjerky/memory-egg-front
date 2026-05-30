@@ -6,7 +6,10 @@ import notebookImage from "../assets/notebook.PNG";
 import windowFrameImage from "../assets/windowframe.PNG";
 import windowBackgroundImage from "../assets/background.png";
 
+import { useEgg } from "../hooks/useEgg";
+
 function EggDashboardPage() {
+  const { egg, loading } = useEgg();
   return (
     <main className="app-page egg-dashboard-page">
       <header className="dashboard-header">
