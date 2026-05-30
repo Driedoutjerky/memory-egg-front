@@ -1,3 +1,5 @@
+import { addWill } from "./userApi";
+
 const QUEST_STORAGE_KEY = "memory_egg_quests";
 
 const defaultQuests = [
@@ -141,8 +143,12 @@ export async function claimQuestReward(questId) {
       claimed_at: new Date().toISOString(),
     };
   });
+    saveQuestsToStorage(updatedQuests);
 
-  saveQuestsToStorage(updatedQuests);
+    const updatedUser = await addWill(selectedQuest.reward_will);
 
-  return selectedQuest.reward_will;
+    return {
+    reward_will: selectedQuest.reward_will,
+    user: updatedUser,
+    };
 }
